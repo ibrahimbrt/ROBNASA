@@ -1,0 +1,98 @@
+﻿<Window x:Class="WpfRobot.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfRobot"
+        mc:Ignorable="d" Loaded="MainWindow_OnLoaded"
+        Title="ROBOTIBRA" Width="651.5" KeyDown="Rec_OnKeyDown" Height="669.667">
+    <Grid Background="Black">
+        <Grid ZIndex="0">
+            <Slider Grid.Row="0" Width="600"   ValueChanged="SliderValue_OnValueChanged" Margin="0 2 0 0" Minimum="5" Maximum="50" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="SliderValue"   VerticalAlignment="Top" HorizontalAlignment="Center"></Slider>
+            <Canvas Margin="22,34,22,0" Panel.ZIndex="-50" Name="pnlMain" Background="#FF303030" Height="400" Width="600" VerticalAlignment="Top">
+                <Polyline  Name="robot2" 
+                Points="10,10 0,20 10,25 20,20 10,10 10,0" 
+                Stroke="#FF01E267" StrokeThickness="4"
+                Canvas.Left="0" Canvas.Top="0"
+                RenderTransformOrigin="0.439,0.598" VerticalAlignment="Bottom" HorizontalAlignment="Left"  >
+                    <Polyline.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="180"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Polyline.RenderTransform>
+
+                </Polyline>
+                <Polyline  Name="robot1" 
+                Points="10,10 0,20 10,25 20,20 10,10 10,0" 
+                Stroke="Orange" StrokeThickness="4"
+                Canvas.Left="0" Canvas.Top="400"
+                RenderTransformOrigin="0.439,0.598" VerticalAlignment="Bottom" HorizontalAlignment="Left"  >
+
+                </Polyline>
+                <Grid Height="60" Width="60" Background="#8E000000" HorizontalAlignment="Right" VerticalAlignment="Top" Canvas.Left="534" Canvas.Top="336">
+                    <Border BorderBrush="#FFC5C4C4" BorderThickness="1" HorizontalAlignment="Center" Height="30" Margin="0,0,0,0" VerticalAlignment="Center" Width="1"/>
+                    <TextBlock   HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" Text="N" VerticalAlignment="Top" Foreground="#FFC5C4C4"/>
+                    <TextBlock   HorizontalAlignment="Center" Margin="25.511,0,25.488,0" TextWrapping="Wrap" Text="S" VerticalAlignment="Bottom" Foreground="#FFC5C4C4"/>
+                    <Border BorderBrush="#FFC5C4C4" BorderThickness="1" HorizontalAlignment="Center" Height="1" Margin="3,0,0,0" VerticalAlignment="Center" Width="35"/>
+                    <TextBlock   HorizontalAlignment="Left"  TextWrapping="Wrap" Text="W" VerticalAlignment="Center" Margin="0" Foreground="#FFC5C4C4"/>
+                    <TextBlock   HorizontalAlignment="Right"  TextWrapping="Wrap" Text="E" VerticalAlignment="Center" Margin="0,0,2,0" Foreground="#FFC5C4C4"/>
+
+
+                </Grid>
+                <Border  Background="#8E000000" HorizontalAlignment="Right" VerticalAlignment="Top"  Canvas.Left="390" Canvas.Top="14" CornerRadius="5" Width="203">
+                    <DockPanel Margin="10,0"     >
+                        <TextBlock   Margin="5,3,0,3" Foreground="Orange"><Run Text="Robot_1:"/></TextBlock>
+                        <TextBlock x:Name="txtNewCoordinate" Margin="4,3,0,3" Foreground="White" Text="0 0"></TextBlock>
+                        <TextBlock x:Name="txtDirecktion" Margin="5,3,0,3" Foreground="White" Text="N"></TextBlock>
+
+                        <TextBlock   Margin="5,3,0,3" Foreground="#FF01E267"><Run Text="Robot_2:"/></TextBlock>
+                        <TextBlock x:Name="txtNewCoordinate2" Margin="4,3,0,3" Foreground="White"><Run Text="0-60"/></TextBlock>
+                        <TextBlock x:Name="txtDirecktion2" Margin="5,3,0,3" Foreground="White"><Run Text="S"/></TextBlock>
+                    </DockPanel>
+
+                </Border>
+                <TextBlock   HorizontalAlignment="Left" TextWrapping="Wrap" Text="0,0" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="0.71,-0.608" Canvas.Top="390" FontSize="8"/>
+                <TextBlock  Name="txtCord"  HorizontalAlignment="Left" TextWrapping="Wrap" Text="40,60" VerticalAlignment="Top" Foreground="White" RenderTransformOrigin="0.097,1.557" FontSize="8" Canvas.Left="580"/>
+
+            </Canvas>
+            <TextBox x:Name="txtinput" Margin="10,475,9,8" TextWrapping="Wrap" AcceptsReturn="True" Text="" Background="#FF666666" Foreground="White" BorderBrush="#FF444444"/>
+            <RadioButton x:Name="rdyRobot1" IsChecked="True" Content="Robot1" HorizontalAlignment="Right" Margin="0,0,98,178" VerticalAlignment="Bottom" Foreground="White"/>
+            <RadioButton x:Name="rdyRobot2" Content="Robot2" HorizontalAlignment="Right" Margin="0,0,28,178" VerticalAlignment="Bottom" Foreground="White"/>
+            <Button x:Name="btnNew" Content="Start New" HorizontalAlignment="Left" Margin="397,444,0,0" VerticalAlignment="Top"   Background="{x:Null}" BorderBrush="#FFC9C9C9" Foreground="#FFC9C9C9" Width="72" Click="btnNew_Click"/>
+        </Grid>
+        <Grid ZIndex="1" Name="grdSetting" Background="#AD000000" Visibility="Visible">
+            <Label Content="Robot Settings" HorizontalAlignment="Center" BorderThickness="0,1,0,1" VerticalAlignment="Top" Margin="0,124,0,0" Foreground="#FF0C9CFD" Width="374" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="#7F000000" FontWeight="Bold" BorderBrush="#FF0C9CFD"></Label>
+            <Border BorderBrush="#FF0C9CFD"  CornerRadius="10" BorderThickness="1" HorizontalAlignment="Center" Height="186" Margin="0,165,0,0" VerticalAlignment="Top" Width="374" Background="#3F000000">
+                <Grid>
+                    <Label  Content="Robot 1:" HorizontalAlignment="Left" Margin="46,59,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
+                    <Label  Content="Robot 2:" HorizontalAlignment="Left" Margin="46,90,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White"/>
+                    <Label   HorizontalAlignment="Left" Margin="118,35,0,0" VerticalAlignment="Top" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontWeight="Bold">X</TextBlock>
+                        </StackPanel>
+                    </Label>
+                    <Label   HorizontalAlignment="Left" Margin="167,35,0,0" VerticalAlignment="Top" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock FontWeight="Bold">Y</TextBlock>
+                        </StackPanel>
+                    </Label>
+                    <Label   HorizontalAlignment="Left" Content="Direction" Margin="221,33,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="White">
+
+                    </Label>
+                    <TextBox x:Name="robot1X" HorizontalAlignment="Left"   Margin="108,62,0,0"   VerticalAlignment="Top" Width="40" PreviewTextInput="Number_OnPreviewTextInput" />
+                    <TextBox x:Name="robot1Y" HorizontalAlignment="Left"   Margin="157,62,0,0"   VerticalAlignment="Top" Width="40" PreviewTextInput="Number_OnPreviewTextInput"/>
+                    <TextBox x:Name="robot2X" HorizontalAlignment="Left"   Margin="108,94,0,0"   VerticalAlignment="Top" Width="40" PreviewTextInput="Number_OnPreviewTextInput"/>
+                    <TextBox x:Name="robot2Y" HorizontalAlignment="Left"   Margin="157,94,0,0"   VerticalAlignment="Top" Width="40" PreviewTextInput="Number_OnPreviewTextInput"/>
+                    <ComboBox x:Name="Robot2cmb" HorizontalAlignment="Left" Margin="227,92,0,0" VerticalAlignment="Top" Width="53"/>
+                    <ComboBox x:Name="Robot1cmb" HorizontalAlignment="Left" Margin="226,61,0,0" VerticalAlignment="Top" Width="53"/>
+                    <Button x:Name="btnSaveSetting" Content="Start" HorizontalAlignment="Left" Margin="210,141,0,0" VerticalAlignment="Top" Width="79" Background="#FF0C9CFD" BorderBrush="#FF0C9CFD" Foreground="White" Height="25" Click="btnSaveSetting_Click"/>
+                    <Button x:Name="btncancel" Visibility="Collapsed" Content="Cancel" HorizontalAlignment="Left" Margin="117,141,0,0" VerticalAlignment="Top" Width="79" Background="{x:Null}" BorderBrush="#FF0C9CFD" Foreground="#FF0C9CFD" Height="25" Click="Btncancel_OnClick"/>
+                </Grid>
+            </Border>
+
+        </Grid>
+    </Grid>
+</Window>
